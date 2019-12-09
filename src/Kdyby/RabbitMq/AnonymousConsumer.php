@@ -15,6 +15,8 @@ class AnonymousConsumer extends \Kdyby\RabbitMq\Consumer
 			'name' => '',
 			'passive' => FALSE,
 			'durable' => FALSE,
+			'noLocal' => FALSE,
+			'noAck' => FALSE,
 			'exclusive' => TRUE,
 			'autoDelete' => TRUE,
 			'nowait' => FALSE,
