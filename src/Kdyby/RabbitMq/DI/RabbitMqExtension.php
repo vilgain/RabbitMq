@@ -49,6 +49,7 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 		'user' => NULL,
 		'password' => NULL,
 		'vhost' => '/',
+		'heartbeat' => 0,
 	];
 
 	/**
@@ -279,6 +280,8 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 					$config['user'],
 					$config['password'],
 					$config['vhost'],
+					'read_write_timeout' => max($config['heartbeat'] * 2.0, 3.0),
+					'heartbeat' => $config['heartbeat'],
 				]);
 
 			$this->connectionsMeta[$name] = [
