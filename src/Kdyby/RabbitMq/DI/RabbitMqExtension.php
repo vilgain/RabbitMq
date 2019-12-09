@@ -630,7 +630,7 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 	protected static function fixCallback($callback)
 	{
 		[$callback] = self::filterArgs($callback);
-		if ($callback instanceof Nette\DI\Statement && \substr_count($callback->entity, '::') && empty($callback->arguments)) {
+		if ($callback instanceof Nette\DI\Statement && is_string($callback->entity) && \substr_count($callback->entity, '::') && empty($callback->arguments)) {
 			$callback = \explode('::', $callback->entity, 2);
 		}
 
