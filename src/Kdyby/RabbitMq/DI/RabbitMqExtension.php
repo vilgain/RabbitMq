@@ -597,6 +597,7 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 		] as $i => $class) {
 			$builder->addDefinition($this->prefix('console.' . $i))
 				->setType($class)
+				->addTag(\Nette\DI\Extensions\InjectExtension::TAG_INJECT)
 				->addTag(self::TAG_COMMAND_KDYBY)
 				->addTag(self::TAG_COMMAND);
 		}
