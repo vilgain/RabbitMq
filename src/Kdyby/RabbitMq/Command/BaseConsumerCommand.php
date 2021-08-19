@@ -84,9 +84,11 @@ abstract class BaseConsumerCommand extends \Symfony\Component\Console\Command\Co
 		}
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output): int
 	{
 		$this->consumer->consume($this->amount);
+
+		return \Symfony\Component\Console\Command\Command::SUCCESS;
 	}
 
 	/**
