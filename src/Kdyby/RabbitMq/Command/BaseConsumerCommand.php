@@ -88,7 +88,7 @@ abstract class BaseConsumerCommand extends \Symfony\Component\Console\Command\Co
 	{
 		$this->consumer->consume($this->amount);
 
-		return \Symfony\Component\Console\Command\Command::SUCCESS;
+		return 0;
 	}
 
 	/**

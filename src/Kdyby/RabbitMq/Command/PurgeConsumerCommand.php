@@ -44,7 +44,7 @@ class PurgeConsumerCommand extends \Symfony\Component\Console\Command\Command
 		$consumer = $this->connection->getConsumer($input->getArgument('name'));
 		$consumer->purge();
 
-		return \Symfony\Component\Console\Command\Command::SUCCESS;
+		return 0;
 	}
 
 }

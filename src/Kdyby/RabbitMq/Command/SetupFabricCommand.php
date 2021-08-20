@@ -47,7 +47,7 @@ class SetupFabricCommand extends \Symfony\Component\Console\Command\Command
 			}
 		}
 
-		return \Symfony\Component\Console\Command\Command::SUCCESS;
+		return 0;
 	}
 
 }
