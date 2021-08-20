@@ -46,7 +46,7 @@ class RpcServerCommand extends \Symfony\Component\Console\Command\Command
 		$rpcServer = $this->connection->getRpcServer($input->getArgument('name'));
 		$rpcServer->start($amount);
 
-		return \Symfony\Component\Console\Command\Command::SUCCESS;
+		return 0;
 	}
 
 }

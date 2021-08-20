@@ -43,7 +43,7 @@ class StdInProducerCommand extends \Symfony\Component\Console\Command\Command
 
 		$producer->publish(\serialize($data));
 
-		return \Symfony\Component\Console\Command\Command::SUCCESS;
+		return 0;
 	}
 
 }
