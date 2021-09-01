@@ -25,8 +25,8 @@ jobs:
 
       - run: composer update --no-interaction --no-suggest --no-progress --prefer-dist
 
-      - run: vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+      - run: make lint
 
-      - run: vendor/bin/tester -s -c ./tests/php.ini-unix ./tests/KdybyTests/
+      - run: make run-tests
 
-      - run: vendor/bin/phpstan analyse -l 2 -c phpstan.neon src tests/KdybyTests
+      - run: make phpstan
