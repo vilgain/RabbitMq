@@ -15,7 +15,7 @@ namespace KdybyTests\RabbitMq\Mock;
 class ConnectionMock extends \Kdyby\RabbitMq\Connection
 {
 
-	protected function doCreateChannel(string $id): \Kdyby\RabbitMq\Channel
+	protected function doCreateChannel(int $id): \Kdyby\RabbitMq\Channel
 	{
 		return new ChannelMock($this, $id);
 	}
