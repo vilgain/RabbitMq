@@ -82,13 +82,13 @@ class Consumer extends \Kdyby\RabbitMq\BaseConsumer
 		$this->setupConsumer();
 		$this->onStart($this);
 
-		$previousErrorHandler = \set_error_handler(static function ($severity, $message, $file, $line, $context) use (&$previousErrorHandler) {
-			if (!\preg_match('~stream_select\\(\\)~i', $message)) {
+		$previousErrorHandler = \set_error_handler(static function (int $errno, string $errstr, string $errfile, int $errline) use (&$previousErrorHandler) {
+			if (!\preg_match('~stream_select\\(\\)~i', $errstr)) {
 				$args = \func_get_args();
 				return \call_user_func_array($previousErrorHandler, $args);
 			}
 
-			throw new \PhpAmqpLib\Exception\AMQPRuntimeException($message . ' in ' . $file . ':' . $line, (int) $severity);
+			throw new \PhpAmqpLib\Exception\AMQPRuntimeException($errstr . ' in ' . $errfile . ':' . $errline, $errno);
 		});
 
 		try {
