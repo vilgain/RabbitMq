@@ -21,7 +21,7 @@ class MultipleConsumer extends \Kdyby\RabbitMq\Consumer
 	}
 
 	/**
-	 * @param array<string, callable> $queues
+	 * @param array<string, array> $queues
 	 */
 	public function setQueues(array $queues): void
 	{

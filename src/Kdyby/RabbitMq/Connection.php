@@ -70,10 +70,10 @@ class Connection extends \PhpAmqpLib\Connection\AMQPLazyConnection implements \K
 
 	/**
 	 * @internal
-	 * @param array<\Kdyby\RabbitMq\IProducer> $producers
-	 * @param array<\Kdyby\RabbitMq\IConsumer> $consumers
-	 * @param array<\Kdyby\RabbitMq\RpcClient> $rpcClients
-	 * @param array<\Kdyby\RabbitMq\RpcServer> $rpcServers
+	 * @param array<string> $producers
+	 * @param array<string> $consumers
+	 * @param array<string> $rpcClients
+	 * @param array<string> $rpcServers
 	 */
 	public function injectServiceMap(
 		array $producers,
