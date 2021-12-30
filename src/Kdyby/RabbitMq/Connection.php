@@ -140,4 +140,12 @@ class Connection extends \PhpAmqpLib\Connection\AMQPLazyConnection implements \K
 		return $channel;
 	}
 
+	protected function connect()
+	{
+		$connected = $this->isConnected();
+		parent::connect();
+		if (!$connected && $this->getHeartbeat()) {
+			(new \PhpAmqpLib\Connection\Heartbeat\PCNTLHeartbeatSender($this))->register();
+		}
+	}
 }
