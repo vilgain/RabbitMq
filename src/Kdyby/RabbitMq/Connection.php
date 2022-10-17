@@ -5,9 +5,12 @@ declare(strict_types = 1);
 namespace Kdyby\RabbitMq;
 
 use Nette;
+use PhpAmqpLib\Connection\Heartbeat\AbstractSignalHeartbeatSender;
 
 class Connection extends \PhpAmqpLib\Connection\AMQPLazyConnection implements \Kdyby\RabbitMq\IConnection
 {
+
+	private ?AbstractSignalHeartbeatSender $heartbeatSender;
 
 	/**
 	 * @var \Nette\DI\Container
@@ -144,8 +147,18 @@ class Connection extends \PhpAmqpLib\Connection\AMQPLazyConnection implements \K
 	{
 		$connected = $this->isConnected();
 		parent::connect();
-		if (!$connected && $this->getHeartbeat()) {
-			(new \PhpAmqpLib\Connection\Heartbeat\PCNTLHeartbeatSender($this))->register();
+		if (!$connected && $this->heartbeatSender) {
+			$this->heartbeatSender->register();
 		}
+	}
+
+	public function getHeartbeatSender(): ?AbstractSignalHeartbeatSender
+	{
+		return $this->heartbeatSender;
+	}
+
+	public function setHeartbeatSender(?AbstractSignalHeartbeatSender $heartbeatSender): void
+	{
+		$this->heartbeatSender = $heartbeatSender;
 	}
 }
