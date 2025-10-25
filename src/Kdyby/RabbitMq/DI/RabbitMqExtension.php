@@ -247,7 +247,7 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 		foreach ($connections as $name => $config) {
 			$config = $this->mergeConfig($config, $this->connectionDefaults);
 
-			if (!$config['user'] instanceof Nette\PhpGenerator\PhpLiteral) {
+			if (!$config['user'] instanceof Nette\Schema\DynamicParameter) {
 				Nette\Utils\Validators::assertField(
 					$config,
 					'user',
@@ -259,7 +259,7 @@ class RabbitMqExtension extends \Nette\DI\CompilerExtension
 					)
 				);
 			}
-			if (!$config['password'] instanceof Nette\PhpGenerator\PhpLiteral) {
+			if (!$config['password'] instanceof Nette\Schema\DynamicParameter) {
 				Nette\Utils\Validators::assertField(
 					$config,
 					'password',
